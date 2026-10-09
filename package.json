@@ -1,0 +1,45 @@
+{
+  "name": "dsh-approval-explainer",
+  "version": "0.2.0",
+  "description": "审批风险解读 — 在审批弹窗里用简体中文讲清 AI 要做什么、在哪里做、同意或拒绝各自会怎样（本地规则秒判 + 可选模型通俗讲解）。Approval risk explainer for DeepSeek Harness.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./rules": "./lib/rules.mjs",
+    "./targets": "./lib/targets.mjs",
+    "./compose": "./lib/compose.mjs",
+    "./all": "./lib/all.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "test",
+    "cordis.patch.yml",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "approval",
+    "risk",
+    "explain",
+    "i18n",
+    "chinese",
+    "审批",
+    "风险解读"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "license": "MIT",
+  "private": true
+}

@@ -1,0 +1,36 @@
+# dsh-approval-explainer — loader patch layer.
+#
+# `dsh plugin add` normally writes this entry for you. If you are installing
+# by hand, copy this block into your profile's own patch file:
+#
+#   ~/.dsh/profiles/<profile>/cordis.patch.yml
+#
+# The desktop profile sets `patchReload: "live"`, so saving that file picks the
+# plugin up without restarting DSH (the `web` profile may need a restart).
+#
+# `name` stays the bare package name on purpose: the loader resolves it from
+# the profile directory, which is where the package is installed. Do not turn
+# it into an absolute path — that resolution is not part of the tested path.
+#
+# config (all optional; every default is re-applied in code):
+#   enabled         false turns the plugin into a no-op.
+#   displayMode     'auto'  → write only the zh display text (default, cleanest:
+#                             the English `reason` is left completely untouched)
+#                   'wrap'  → also prepend the explanation into `reason`, with
+#                             the English original appended verbatim. Use this if
+#                             a GUI build does not render the zh display text.
+#                   'both'  → do both.
+#   modelLayer      true  → additionally ask a model for a plain-language gloss.
+#   modelTimeoutMs  hard ceiling for that model call. Approval is blocking, so
+#                   this is deliberately far below the 120s an auxiliary call
+#                   usually gets. 0 disables the model layer entirely.
+#   maxReasonChars  truncation bound for the reason text.
+- insert:
+    - id: dsh-approval-explainer
+      name: 'dsh-approval-explainer'
+      config:
+        enabled: true
+        displayMode: auto
+        modelLayer: true
+        modelTimeoutMs: 1500
+        maxReasonChars: 800
